@@ -1,0 +1,42 @@
+body {
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: rgb(200,200,200); /* Sanity Check! */
+}
+
+h1 {
+  margin-top: 100px;
+  text-align: center;
+}
+p {
+	text-align: center;
+}
+
+.class-size {
+	font-size: 24px;
+}
+
+.col-xs-1 {
+	color: white;
+	font-size: 25px;
+	text-align: center;
+	height: 50px;
+	border: 1px solid rgb(150, 150, 150);
+}
+.col-xs-10 {
+	height: 50px;
+}
+
+.pl-1 {
+	background-color: white;
+	color: black;
+}
+
+.pl-2 {
+	background-color: black;
+	color: white;
+}
+
+.goal {
+	background-color: yellow;
+}
