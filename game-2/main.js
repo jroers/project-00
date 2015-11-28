@@ -68,46 +68,55 @@ $(document).ready(function(){
 	//Since I wanted to use arrow keys, I was able to find out the values of the arrow keys here: http://jsfiddle.net/JamesD/8q7Mu/
 	$(window).keydown(function keypressHandler(event) {
 		//Button inputs for Player 1 - WASD mapping)
-		//Right - D
-		if (event.which === 68) {
-			if (player1leftRight + 20 <= 720) {
-				pl1moveRight();
-			}
-		//Down - S
-		} else if (event.which === 83) {
-			if (player1upDown + 20 <= 425) {
-				pl1moveDown();
-			}
-		//Left - A
-		} else if (event.which === 65) {
-			if (player1leftRight - 20 >= -20) {
-				pl1moveLeft();
-			}
-		//Up - W
-		} else if (event.which === 87) {
-			if (player1upDown - 20 >= -15) {
-				pl1moveUp();
-			}
+		if (event.which === 68 || event.which === 83 || event.which === 65 || event.which === 87) {
+			//This if statement didn't work. I wanted to prevent the player from entering the middle ground, but it gets locked once you get too close. Need to troubleshoot.
+			// Maybe change the <div class="racetrack"> to a <canvas>?
+			// if (player1upDown + 20 > 45 && player1upDown -20 < 345 && player1leftRight + 20 > 80 && player1leftRight - 20 < 620) {
+			// 	console.log("movement not allowed");
+			// } else {
+				//Right - D
+				if (event.which === 68) {
+					if (player1leftRight + 20 <= 720 && player1upDown < 345) {
+						pl1moveRight();
+					}
+				//Down - S
+				} else if (event.which === 83) {
+					if (player1upDown + 20 <= 425 && player1leftRight > 80) {
+						pl1moveDown();
+					}
+				//Left - A
+				} else if (event.which === 65) {
+					if (player1leftRight - 20 >= -20 && player1upDown > 45) { //the second part prevents the player from moving left when they're supposed to move right.
+						pl1moveLeft();
+					}
+				//Up - W
+				} else if (event.which === 87) {
+					if (player1upDown - 20 >= -15 && player1leftRight < 620) {
+						pl1moveUp();
+					}
+				}
+			// }
+		}
 		
 		//Button inputs for Player 2 - Arrow key mapping
 		//Right arrow
-		} else if (event.which === 39) {
-			if (player2leftRight + 20 <= 720) {
+		if (event.which === 39) {
+			if (player2leftRight + 20 <= 720 && player2upDown < 252) {
 				pl2moveRight();
 			}
 		//Down arrow
 		} else if (event.which === 40) {
-			if (player2upDown + 20 <= 332) {
+			if (player2upDown + 20 <= 332 && player2leftRight > 80) {
 				pl2moveDown();
 			}
 		//Left arrow
 		} else if (event.which === 37) {
-			if (player2leftRight - 20 >= -20) {
+			if (player2leftRight - 20 >= -20 && player2upDown > -48) {
 				pl2moveLeft();
 			}
 		//Up arrow
 		} else if (event.which === 38 ) {
-			if (player2upDown - 20 >= -128) {
+			if (player2upDown - 20 >= -128 && player2leftRight < 620) {
 				pl2moveUp();
 			}
 		}
