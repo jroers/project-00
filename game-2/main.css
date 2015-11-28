@@ -1,0 +1,50 @@
+body {
+	background: green;
+}
+
+.racetrack {
+	height: 500px;
+	width: 800px;
+	border: 1px solid black;
+	margin: 0 auto;
+	background: rgb(150, 150, 150);
+	text-align: left;
+	position: relative;
+}
+
+.center {
+	height: 250px;
+	width: 500px;
+	border: 1px solid black;
+	background: green;
+	margin: 125px 150px;
+	position: absolute;
+}
+
+.finish-line {
+	height: 125px;
+	width: 0px;
+	border: 1px solid black;
+	position: relative;
+	left: 400px;
+	top: -192px;
+}
+
+.player1 {
+	position: relative;
+	height: 96px;
+	width: 96px;
+	z-index: 2;
+	left: 300px;
+	top: -15px;
+}
+
+.player2 {
+	position: relative;
+	height: 96px;
+	width: 96px;
+	z-index: 2;
+	left: 300px;
+	top: -48px;
+}
+
