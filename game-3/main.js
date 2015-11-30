@@ -1,4 +1,4 @@
-console.log("sanity check");
+// console.log("sanity check");
 
 $(document).ready(function () {
     var canvas = document.getElementById("canvas");
@@ -9,6 +9,12 @@ $(document).ready(function () {
 
     var player1random;
     var player2random;
+
+    var player1wins = 0;
+    var player2wins = 0;
+
+    var player1mistakes = 0;
+    var player2mistakes = 0;
 
     var playersReady = 0;
 
@@ -63,14 +69,19 @@ $(document).ready(function () {
 		  	    	if (player1height <= 40) {
 		  	    		player1height = 25;
 		  	    		ctx.fillRect(40, player1height, 30, 40);
+		  	    		$(".winner").text("Player 2 wins!");
+		  	    		player1wins ++;
+		  	    		$(".p1-wins").text("Wins: " + player1wins);
+		  	    		$(".p1-mistakes").text("Total mistakes this round: " + player1mistakes);
+			    		$(".p2-mistakes").text("Total mistakes this round: " + player2mistakes);
 		  	    		$(document).off("keydown");
+			    		$(".reset").show();
 		  	    		return;
 		  	    	}
 		        	ctx.fillRect(40, player1height, 30, 40);
 		        	generatePlayer1Move();
 		  	  	} else {
 		  	  		if (player1height > 600) {
-		  	  	  	console.log("no penalty");
 		  	  		} else if (player1height > 400) {
 			  	  	  	ctx.clearRect(40, player1height, 30, 40);
 			      	 	player1height += 10;
@@ -84,6 +95,7 @@ $(document).ready(function () {
 			  	   	  	player1height += 40;
 			          	ctx.fillRect(40, player1height, 30, 40);
 			  	  	}
+			  	  	player1mistakes ++;
   				}
   			} else if (event.which === 38 || event.which === 37 || event.which === 40 || event.which === 39) {
 	  	  		if (event.which === player2random) {
@@ -92,14 +104,19 @@ $(document).ready(function () {
 			  		if (player2height <= 40) {
 			    		player2height = 25;
 			    		ctx.fillRect(130, player2height, 30, 40);
+			    		$(".winner").text("Player 2 wins!");
+			    		player2wins ++;
+			    		$(".p2-wins").text("Wins: " + player2wins);
+			    		$(".p1-mistakes").text("Total mistakes this round: " + player1mistakes);
+			    		$(".p2-mistakes").text("Total mistakes this round: " + player2mistakes);
 			    		$(document).off("keydown");
+			    		$(".reset").show();
 			    		return;
 		    		}
 		    		ctx.fillRect(130, player2height, 30, 40);
 		    		generatePlayer2Move();
 		  	  	} else {
 		  	  		if (player2height > 600) {
-		  	  	  		console.log("no penalty");
 		  	  		} else if (player2height > 400) {
 		  	  	  		ctx.clearRect(130, player2height, 30, 40);
 		      	  		player2height += 10;
@@ -113,6 +130,7 @@ $(document).ready(function () {
 		  	   	  		player2height += 40;
 		          		ctx.fillRect(130, player2height, 30, 40);
 		  	  		}
+		  	  		player2mistakes ++;
 	  	  		}	  
 	  		}
 	  	});
@@ -125,16 +143,30 @@ $(document).ready(function () {
 			$(this).text("Ready!");
 			playersReady ++;
 			if (playersReady === 2) {
-				$("btn-primary").removeClass("btn-success");
-				$("btn-primary").hide();
-				$(".countdown").text("3").fadeOut(1000);
-				$(".countdown").append("2").fadeOut(1000);
+				playersReady = 0;
+				$(".btn-primary").removeClass("btn-success");
+				$(".btn-primary").hide();
+				startGame();
 			}
 		});
 	}
 
-	countdown();
-	// startGame();
+	$(".reset").click(function() {
+		$(".reset").hide();
+		$(".btn-primary").show();
+		$(".winner").text("");
+		$(".player1-random").text("");
+		$(".player2-random").text("");
+		player1mistakes = 0;
+		player2mistakes = 0;
+		ctx.clearRect(40, player1height, 30, 40);
+  		ctx.clearRect(130, player2height, 30, 40);
+		countdown();
+	});
 
+	$(".reset").hide();
+	ctx.fillRect(40, player1height = 750, 30, 40);
+  	ctx.fillRect(130, player2height = 750, 30, 40);
+	countdown();
 
 });
