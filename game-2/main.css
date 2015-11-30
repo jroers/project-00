@@ -1,5 +1,10 @@
 body {
 	background: green;
+	color: black;
+}
+
+.header {
+	padding: 10px;
 }
 
 .racetrack {
