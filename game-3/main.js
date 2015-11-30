@@ -69,7 +69,7 @@ $(document).ready(function () {
 		  	    	if (player1height <= 40) {
 		  	    		player1height = 25;
 		  	    		ctx.fillRect(40, player1height, 30, 40);
-		  	    		$(".winner").text("Player 2 wins!");
+		  	    		$(".winner").text("Player 1 wins!");
 		  	    		player1wins ++;
 		  	    		$(".p1-wins").text("Wins: " + player1wins);
 		  	    		$(".p1-mistakes").text("Total mistakes this round: " + player1mistakes);
@@ -145,6 +145,7 @@ $(document).ready(function () {
 			if (playersReady === 2) {
 				playersReady = 0;
 				$(".btn-primary").removeClass("btn-success");
+				$(".btn-primary").text("Ready?");
 				$(".btn-primary").hide();
 				startGame();
 			}
